@@ -1,0 +1,6 @@
+{
+  "buildCommand": "expo export -p web",
+  "devCommand": "expo start --web",
+  "framework": "expo",
+  "outputDirectory": "web-build"
+}

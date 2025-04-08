@@ -1,43 +1,50 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
-import { Platform } from 'react-native';
-
-import { HapticTab } from '@/components/HapticTab';
-import { IconSymbol } from '@/components/ui/IconSymbol';
-import TabBarBackground from '@/components/ui/TabBarBackground';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
+import React from "react";
+import { Tabs } from "expo-router";
+import { Home, Search, Trophy, User } from "lucide-react-native";
+import Colors from "@/constants/colors";
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-        tabBarButton: HapticTab,
-        tabBarBackground: TabBarBackground,
-        tabBarStyle: Platform.select({
-          ios: {
-            // Use a transparent background on iOS to show the blur effect
-            position: 'absolute',
-          },
-          default: {},
-        }),
-      }}>
+        tabBarActiveTintColor: Colors.primary,
+        tabBarInactiveTintColor: Colors.text.secondary,
+        tabBarStyle: {
+          backgroundColor: Colors.background,
+          borderTopColor: "#333",
+        },
+        headerStyle: {
+          backgroundColor: Colors.background,
+        },
+        headerTintColor: Colors.text.primary,
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+          title: "Home",
+          tabBarIcon: ({ color }) => <Home size={24} color={color} />,
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="discover"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          title: "Discover",
+          tabBarIcon: ({ color }) => <Search size={24} color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="trials"
+        options={{
+          title: "Trials",
+          tabBarIcon: ({ color }) => <Trophy size={24} color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="profile"
+        options={{
+          title: "Profile",
+          tabBarIcon: ({ color }) => <User size={24} color={color} />,
         }}
       />
     </Tabs>
